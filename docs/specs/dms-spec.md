@@ -1,4 +1,4 @@
-# Especificação - Document Management System
+# Especificação - Document Management System 
 
 ## 1. Objetivo
 
