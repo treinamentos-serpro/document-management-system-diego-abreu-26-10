@@ -56,4 +56,24 @@ uma identidade de demonstração, **não autenticação**.
 O frontend usa `/api`, removido pelo proxy do Vite antes de chegar ao backend.
 Consulte o contrato completo em [Especificação do DMS](docs/specs/dms-spec.md).
 
+## Frontend do DMS
+
+Com o backend em execução, rode `npm run dev` em `frontend` e abra
+`http://localhost:5173`. Se necessário, instale antes as dependências com
+`npm install` em cada projeto.
+
+Informe um identificador de usuário e clique em **Carregar documentos**.
+Selecione um arquivo e clique em **Enviar**; a lista é atualizada após o upload.
+Use **Baixar** para receber um documento com seu nome original ou **Atualizar
+lista** para consultar novamente. A interface informa carregamento, sucesso e
+erros; o limite de tamanho é validado pelo backend conforme sua configuração.
+
+O cliente em `frontend/src/services/api.js` centraliza as chamadas `fetch` com
+prefixo `/api` e o cabeçalho `X-User-Id`, inclusive no download binário.
+Trocar o identificador carrega outra lista, sem autenticar o usuário.
+O proxy do Vite já encaminha as chamadas para `http://localhost:3000`.
+Em produção, configure um proxy equivalente para `/api` no servidor da aplicação.
+
+Valide com `npm test` (cliente de API) e `npm run build` em `frontend`.
+
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
